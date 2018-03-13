@@ -6,7 +6,7 @@ public class Board {
     int empty_pos_x;
     int empty_pos_y;
     List <BoardState> legal_moves = new ArrayList<BoardState>();
-
+    ClosedList closedList = new ClosedList();
 
 
     public Board(BoardState [][] b, int empty_x,int empty_y) {
@@ -46,13 +46,14 @@ public class Board {
     }
 
     public char autoSearch(){
+
+        closedList.add(board);
+
         Map<BoardState,Integer> tempMap = new HashMap<BoardState, Integer>();
 
         for (BoardState bs: legal_moves) {
 
             Board hypotheticalBoard = new Board(board,empty_pos_x,empty_pos_y);
-
-//            System.out.println("\t\t\t\t\t\t\t\t\t\t\t" + bs.alpha_position + " " + bs.getOccupier());
 
                 int swap = bs.alpha_position;
                 int new_pos_x = (swap-65)%5;
@@ -63,10 +64,10 @@ public class Board {
                 hypotheticalBoard.empty_pos_y = new_pos_y;
                 hypotheticalBoard.board[hypotheticalBoard.empty_pos_y][hypotheticalBoard.empty_pos_x].setOccupier('e');
 
-//                hypotheticalBoard.printBoard("\t\t\t\t\t\t\t\t\t\t\t");
-                int score = runHeuristic(hypotheticalBoard.board);
-                tempMap.put(bs, score);
-//            System.out.println("\t\t\t\t\t\\t\t\t\t\t\t" +bs.alpha_position + " has a score " + score);
+                if(!closedList.containsBoard(hypotheticalBoard.board)) {
+                    int score = runHeuristic(hypotheticalBoard.board);
+                    tempMap.put(bs, score);
+                }
         }
 
         Map.Entry<BoardState, Integer> maxEntry = null;
