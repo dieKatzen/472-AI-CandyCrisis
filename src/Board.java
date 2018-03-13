@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Board {
@@ -149,10 +150,8 @@ public class Board {
             if(bs.alpha_position == c){
 
                 int swap = c;
-                System.out.println (empty_pos_y  + " " + empty_pos_x   +" " +swap);
                 int new_pos_x = (swap-65)%5;
                 int new_pos_y = (swap-65-new_pos_x)/5;
-                System.out.println (new_pos_y  + " " + new_pos_x   +" " +swap);
                 char new_c = board[new_pos_y][new_pos_x].getOccupier();
                 board[empty_pos_y][empty_pos_x].setOccupier(new_c);
                 empty_pos_x = new_pos_x;
@@ -216,6 +215,17 @@ public class Board {
                 System.out.printf("%8c",board[i][j].getOccupier());
             }
             System.out.println();
+        }
+    }
+
+    public void printBoard (PrintWriter pw){
+
+
+        for (int i = 0; i<= 2 ;i++){
+            for (int j = 0; j<= 4 ;j++){
+                pw.printf("%8c",board[i][j].getOccupier());
+            }
+            pw.println();
         }
     }
 

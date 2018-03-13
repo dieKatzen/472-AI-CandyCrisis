@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class Main {
@@ -10,18 +7,29 @@ public class Main {
 
         String csvFile = "input.txt";
         BufferedReader br = null;
+        Scanner scanner = null;
+        PrintWriter pw = null;
         String line = "";
         String cvsSplitBy = "`";
-        String gamemode;
+        String gamemode = null;
+        String gamemodeMessage = "Select a Game Mode : automatic | manual";
 
         try {
-            Scanner scanner = new Scanner(System.in);
+            pw = new PrintWriter(new PrintStream("Output.txt"));
+            scanner = new Scanner(System.in);
             br = new BufferedReader(new FileReader(csvFile));
-            gamemode = scanner.nextLine();
+            while(gamemode == null || (!gamemode.equals("automatic")&&!gamemode.equals("manual"))){
+                System.out.println(gamemodeMessage);
+                gamemode = scanner.nextLine();
+                if(!gamemode.equals("automatic")&&!gamemode.equals("manual")){
+                    System.out.print( "Error Try Again - ");
+                }
+            }
             while ((line = br.readLine()) != null) {
                 Board game = new Board(line);
-                game.printBoard();
-
+                pw.println("\n\n New Game:");
+                game.printBoard(pw);
+                pw.println("\n Trace is as follows: \n\n");
                 boolean isLegal = false;
                 boolean isWinning = false;
                 while(!isWinning){
@@ -34,6 +42,7 @@ public class Main {
                     }else if (gamemode.equals("automatic")){
                         char nextPosition = game.autoSearch();
                         System.out.println("Next position chosen by computer is: " + nextPosition);
+                        pw.println("  " + nextPosition);
                         scanner.nextLine();
                         game.updateBoard(nextPosition);
                     }
@@ -47,23 +56,25 @@ public class Main {
 
                 System.out.println("\n\n Start New Game! Press Enter \n\n\n");
                 scanner.nextLine();
-
-
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try {
+                if (scanner != null) {
+                    scanner.close();
                 }
+                if (pw != null) {
+                    pw.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-
     }
 }
