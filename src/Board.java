@@ -87,7 +87,7 @@ public class Board {
         return maxEntry.getKey().alpha_position;
     }
 
-    public int runHeuristic(BoardState [][] b){
+    public static int runHeuristic(BoardState [][] b){
         int sum=0;
 
         Integer sumTop=0;
@@ -124,7 +124,7 @@ public class Board {
         return sum;
     }
 
-    public Integer getClosest(BoardState [][] hypoBoard, int skip_x, int skip_y, int actual_y, char occupier){
+    public static Integer getClosest(BoardState [][] hypoBoard, int skip_x, int skip_y, int actual_y, char occupier){
         Integer sumDistance = null;
 
         for (int i = 0; i<= 2 ;i++) {
