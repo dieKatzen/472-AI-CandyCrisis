@@ -12,24 +12,33 @@ public class Main {
         String line = "";
         String cvsSplitBy = "`";
         String gamemode = null;
-        String gamemodeMessage = "Select a Game Mode : automatic | manual";
+        String gamemodeMessage = "Select a Game Mode : automatic | manual | complete";
+        char nextPosition;
 
         try {
             pw = new PrintWriter(new PrintStream("Output.txt"));
             scanner = new Scanner(System.in);
             br = new BufferedReader(new FileReader(csvFile));
-            while(gamemode == null || (!gamemode.equals("automatic")&&!gamemode.equals("manual"))){
+            while(gamemode == null || (!gamemode.equals("automatic")&&!gamemode.equals("manual")&&!gamemode.equals("complete"))){
                 System.out.println(gamemodeMessage);
                 gamemode = scanner.nextLine();
-                if(!gamemode.equals("automatic")&&!gamemode.equals("manual")){
+                if(!gamemode.equals("automatic")&&!gamemode.equals("manual")&&!gamemode.equals("complete")){
                     System.out.print( "Error Try Again - ");
                 }
             }
             while ((line = br.readLine()) != null) {
+
+                StringBuilder sb = new StringBuilder();
+                long timeStart  = System.currentTimeMillis();
+
                 Board game = new Board(line);
-                pw.println("\n\n New Game:");
-                game.printBoard(pw);
-                pw.println("\n Trace is as follows: \n\n");
+                if(gamemode.equals("complete")){}
+                else {
+                    pw.println("\n\n New Game:");
+                    game.printBoard(pw);
+                    pw.println("\n Trace is as follows: \n\n");
+                    System.out.println("\n Trace is as follows: \n\n");
+                }
                 boolean isLegal = false;
                 boolean isWinning = false;
                 while(!isWinning){
@@ -39,23 +48,34 @@ public class Main {
                             //manual version
                             isLegal = game.updateBoard(scanner.nextLine().charAt(0));
                         }
+                        game.printBoard();
                     }else if (gamemode.equals("automatic")){
-                        char nextPosition = game.autoSearch();
+                        nextPosition = game.autoSearch();
                         System.out.println("Next position chosen by computer is: " + nextPosition);
                         pw.println("  " + nextPosition);
                         scanner.nextLine();
                         game.updateBoard(nextPosition);
+                        game.printBoard();
+                    }else if (gamemode.equals("complete")){
+                        nextPosition = game.autoSearch();
+                        game.updateBoardComplete(nextPosition);
                     }
 
 
-                    game.printBoard();
                     isLegal= false;
                     isWinning = game.isWinning();
                 }
+                long endStart  = System.currentTimeMillis();
+                pw.println("Solution is: " + game.sb.toString());
+                pw.println("Time elapsed is: " + (timeStart-endStart));
+                System.out.println("Time elapsed is: " + (endStart-timeStart) + " milliseconds");
+                System.out.println("Solution is: " + sb.toString());
                 System.out.println("\n\n You win!!!!!!!!!!!!!!!!!!!!! \n\n\n");
 
                 System.out.println("\n\n Start New Game! Press Enter \n\n\n");
-                scanner.nextLine();
+                if(gamemode.equals("automatic")||gamemode.equals("manual")) {
+                    scanner.nextLine();
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

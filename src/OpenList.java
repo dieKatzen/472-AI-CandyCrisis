@@ -1,41 +1,25 @@
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class OpenList {
-    SortedSet<BoardState[][]> openList;
+    TreeSet<Board> openList = new TreeSet();
 
 
     public OpenList() {
-        this.openList = new TreeSet<BoardState[][]>(new Comparator<BoardState[][]>(){
-                @Override
-                public int compare(BoardState[][]bs1,BoardState[][] bs2) {
-                return Board.runHeuristic(bs1) - Board.runHeuristic(bs2);
-                }
-        });
+        this.openList = new TreeSet<Board>();
     }
 
-    public void add (BoardState [][] bs){
-        System.out.println(openList.size());
-        if(!this.containsBoard(bs)){
-            System.out.println("adding");
-            openList.add(copyBS(bs));
+    public void add (Board board){
+        if(!this.containsBoard(board)){
+            openList.add(copyBS(board));
         }
     }
 
-    public BoardState[][] copyBS(BoardState[][]bs){
-        BoardState [][] bsnew = new BoardState[3][5];
-
-        for (int i = 0; i<= 2 ;i++){
-            for (int j = 0; j<= 4 ;j++){
-                bsnew[i][j]= new BoardState(bs[i][j].getOccupier());
-            }
-        }
-        return bsnew;
+    public Board copyBS(Board oldBoard){
+        Board newBoard = new Board(oldBoard);
+        return newBoard;
     }
 
-    public boolean containsBoard (BoardState [][] bs){
+    public boolean containsBoard (Board board){
 
         Iterator cli = openList.iterator();
 
@@ -44,18 +28,18 @@ public class OpenList {
         while(cli.hasNext()){
             tempBool = true;
 
-            BoardState [][] clibs = (BoardState [][])cli.next();
-            if(sameBoard(clibs,bs)){
+            Board clibs = (Board)cli.next();
+            if(sameBoard(clibs,board)){
                 return true;
             };
         }
         return false;
     }
 
-    public boolean sameBoard(BoardState [][] bs1,BoardState [][]bs2){
+    public boolean sameBoard(Board b1,Board b2){
         for (int i = 0; i<= 2 ;i++){
             for (int j = 0; j<= 4 ;j++){
-                if(bs1[i][j].getOccupier()!= bs2[i][j].getOccupier()){
+                if(b1.getBoard()[i][j].getOccupier()!= b2.getBoard()[i][j].getOccupier()){
                     return false;
                 }
             }
@@ -72,6 +56,7 @@ public class OpenList {
             System.out.println();
         }
     }
+
 
 
     public static void main (String [] args){

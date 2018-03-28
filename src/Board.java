@@ -1,13 +1,39 @@
 import java.io.PrintWriter;
 import java.util.*;
 
-public class Board {
+public class Board implements Comparable<Board>{
+
+    public BoardState[][] getBoard() {
+        return board;
+    }
 
     private BoardState [][] board;
     int empty_pos_x;
     int empty_pos_y;
     List <BoardState> legal_moves = new ArrayList<BoardState>();
     ClosedList closedList = new ClosedList();
+    int cnt = 0;
+
+    public StringBuilder getSb() {
+        return sb;
+    }
+
+    public void setSb(StringBuilder sb) {
+        this.sb = sb;
+    }
+
+    OpenList openList = new OpenList();
+    StringBuilder sb = new StringBuilder();
+
+    public int getHeuristicValue() {
+        return heuristicValue;
+    }
+
+    public void setHeuristicValue(int heuristicValue) {
+        this.heuristicValue = heuristicValue;
+    }
+
+    int heuristicValue;
 
 
     public Board(BoardState [][] b, int empty_x,int empty_y) {
@@ -28,6 +54,23 @@ public class Board {
         initBoard(line);
     }
 
+    //for copying
+    public Board(Board oldBoard){
+
+        this.board =  new BoardState [3][5];
+        for (int i = 0; i<= 2 ;i++){
+            for (int j = 0; j<= 4 ;j++){
+                this.board[i][j] = new BoardState (oldBoard.board[i][j].getAlpha_position(),oldBoard.board[i][j].occupier);
+            }
+        }
+
+        this.heuristicValue = oldBoard.getHeuristicValue();
+        this.empty_pos_x = oldBoard.empty_pos_x;
+        this.empty_pos_y = oldBoard.empty_pos_y;
+        this.cnt = oldBoard.cnt;
+    }
+
+    //init by insert string
     private void initBoard (String line){
 
         String[]inputs = line.split(" ");
@@ -67,25 +110,110 @@ public class Board {
 
                 if(!closedList.containsBoard(hypotheticalBoard.board)) {
                     int score = runHeuristic(hypotheticalBoard.board);
+                    hypotheticalBoard.setHeuristicValue(score);
                     tempMap.put(bs, score);
+                    openList.add(hypotheticalBoard);
                 }
         }
 
-        Map.Entry<BoardState, Integer> maxEntry = null;
-
-        for (Map.Entry<BoardState, Integer> entry : tempMap.entrySet())
-        {
-            if(maxEntry != null && entry.getValue() == maxEntry.getValue() ){
-                System.out.println("Values are equal between " + entry.getKey().getAlpha_position() + " and " + maxEntry.getKey().alpha_position);
-            }
-            if (maxEntry == null || entry.getValue() <= maxEntry.getValue())
-            {
-                maxEntry = entry;
-            }
+//        Map.Entry<BoardState, Integer> maxEntry = null;
+//
+//        for (Map.Entry<BoardState, Integer> entry : tempMap.entrySet())
+//        {
+//            if(maxEntry != null && entry.getValue() == maxEntry.getValue() ){
+//                System.out.println("Values are equal between " + entry.getKey().getAlpha_position() + " and " + maxEntry.getKey().alpha_position);
+//            }
+//            if (maxEntry == null || entry.getValue() <= maxEntry.getValue())
+//            {
+//                maxEntry = entry;
+//            }
+//        }
+        Object [] bar = openList.openList.toArray();
+        System.out.println("heuristic values");
+        for(Object bard: bar){
+            System.out.print(((Board)bard).getHeuristicValue() +" ");
         }
 
-        return maxEntry.getKey().alpha_position;
+        Board tempBoard = openList.openList.pollFirst();
+        char alpha = tempBoard.getBoard()[tempBoard.empty_pos_y][tempBoard.empty_pos_x].alpha_position;
+
+        //backtracking
+//        backtracking(tempBoard);
+//        sb.append(alpha);
+        System.out.println("Path is here: ");
+        System.out.println(sb.toString());
+        System.out.println("cnt is here: ");
+        System.out.println(cnt);
+
+        return alpha;
     }
+
+//    public char autoSearchComplete(){
+//
+//        closedList.add(board);
+//
+//        Map<BoardState,Integer> tempMap = new HashMap<BoardState, Integer>();
+//
+//        for (BoardState bs: legal_moves) {
+//
+//            Board hypotheticalBoard = new Board(board,empty_pos_x,empty_pos_y);
+//
+//            int swap = bs.alpha_position;
+//            int new_pos_x = (swap-65)%5;
+//            int new_pos_y = (swap-65-new_pos_x)/5;
+//            char new_c = hypotheticalBoard.board[new_pos_y][new_pos_x].getOccupier();
+//            hypotheticalBoard.board[hypotheticalBoard.empty_pos_y][hypotheticalBoard.empty_pos_x].setOccupier(new_c);
+//            hypotheticalBoard.empty_pos_x = new_pos_x;
+//            hypotheticalBoard.empty_pos_y = new_pos_y;
+//            hypotheticalBoard.board[hypotheticalBoard.empty_pos_y][hypotheticalBoard.empty_pos_x].setOccupier('e');
+//            hypotheticalBoard.cnt = cnt++;
+//
+//            if(!closedList.containsBoard(hypotheticalBoard.board)) {
+//                int score = runHeuristic(hypotheticalBoard.board);
+//                hypotheticalBoard.setHeuristicValue(score);
+//                tempMap.put(bs, score);
+//                openList.add(hypotheticalBoard);
+//            }
+//        }
+//
+////        Map.Entry<BoardState, Integer> maxEntry = null;
+////
+////        for (Map.Entry<BoardState, Integer> entry : tempMap.entrySet())
+////        {
+////            if(maxEntry != null && entry.getValue() == maxEntry.getValue() ){
+////                System.out.println("Values are equal between " + entry.getKey().getAlpha_position() + " and " + maxEntry.getKey().alpha_position);
+////            }
+////            if (maxEntry == null || entry.getValue() <= maxEntry.getValue())
+////            {
+////                maxEntry = entry;
+////            }
+////        }
+//        Object [] bar = openList.openList.toArray();
+//        System.out.println("heuristic values");
+//        for(Object bard: bar){
+//            System.out.print(((Board)bard).getHeuristicValue() +" ");
+//        }
+//
+//        Board tempBoard = openList.openList.pollFirst();
+//        char alpha = tempBoard.getBoard()[tempBoard.empty_pos_y][tempBoard.empty_pos_x].alpha_position;
+//
+//        //backtracking
+//        backtracking(tempBoard);
+//        sb.append(alpha);
+////        System.out.println("Path is here: ");
+////        System.out.println(sb.toString());
+//
+//        return alpha;
+//    }
+
+    public void backtracking(Board oldBoard){
+        this.board = oldBoard.board;
+        this.empty_pos_y = oldBoard.empty_pos_y;
+        this.empty_pos_x = oldBoard.empty_pos_x;
+        this.cnt = oldBoard.cnt;
+    }
+
+
 
     public static int runHeuristic(BoardState [][] b){
         int sum=0;
@@ -166,6 +294,28 @@ public class Board {
         return false;
     }
 
+    public boolean updateBoardComplete (char c){
+        for (BoardState bs: legal_moves
+                ) {
+            if(bs.alpha_position == c){
+
+                int swap = c;
+                int new_pos_x = (swap-65)%5;
+                int new_pos_y = (swap-65-new_pos_x)/5;
+                char new_c = board[new_pos_y][new_pos_x].getOccupier();
+                board[empty_pos_y][empty_pos_x].setOccupier(new_c);
+                empty_pos_x = new_pos_x;
+                empty_pos_y = new_pos_y;
+                board[empty_pos_y][empty_pos_x].setOccupier('e');
+                legal_moves.clear();
+                return true;
+            }
+        }
+
+        System.out.println("Illegal move");
+        return false;
+    }
+
     public void showLegalMoves(){
         List<String> print_legal_moves = new ArrayList<String>();
 
@@ -226,6 +376,26 @@ public class Board {
                 pw.printf("%8c",board[i][j].getOccupier());
             }
             pw.println();
+        }
+    }
+
+    public void printBoardVertical (PrintWriter pw){
+
+        for (int i = 0; i<= 2 ;i++){
+            for (int j = 0; j<= 4 ;j++){
+                pw.print(board[i][j].getOccupier()+ " ");
+            }
+        }
+    }
+
+    @Override
+    public int compareTo(Board board){
+        if(this.getHeuristicValue() == board.getHeuristicValue()){
+            return 0;
+        }else if (this.getHeuristicValue() > board.getHeuristicValue()){
+            return 1;
+        }else{
+            return -1;
         }
     }
 

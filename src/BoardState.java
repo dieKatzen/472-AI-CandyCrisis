@@ -7,6 +7,11 @@ public class BoardState{
         this.occupier = occupier;
     }
 
+    public BoardState(BoardState bs) {
+        this.alpha_position = bs.getAlpha_position();
+        this.occupier = bs.getOccupier();
+    }
+
     public BoardState( char occupier) {
         this.alpha_position = alpha_position;
         this.occupier = occupier;

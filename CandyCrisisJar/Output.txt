@@ -1,0 +1,110 @@
+
+
+ New Game:
+       b       r       b       w       w
+       r       r       b       b       b
+       b       r       e       r       r
+
+ Trace is as follows: 
+
+
+  H
+  G
+  F
+  K
+  L
+  G
+  B
+  A
+  F
+  K
+  L
+  M
+  N
+  O
+  J
+  E
+  D
+  C
+  B
+  A
+  F
+  G
+  B
+  C
+  H
+  M
+  N
+  O
+  J
+
+
+ New Game:
+       r       r       b       b       r
+       w       b       r       r       r
+       w       b       e       b       b
+
+ Trace is as follows: 
+
+
+  N
+  O
+  J
+  I
+  D
+  C
+  B
+  A
+  F
+  K
+  L
+  M
+  H
+  C
+  B
+  A
+  F
+  K
+  L
+  G
+  B
+  A
+  F
+  K
+  L
+  G
+
+
+ New Game:
+       r       b       w       r       r
+       b       b       b       b       r
+       r       b       w       r       e
+
+ Trace is as follows: 
+
+
+  J
+
+
+ New Game:
+       r       e       b       w       r
+       b       b       b       r       r
+       r       b       r       b       w
+
+ Trace is as follows: 
+
+
+  G
+  F
+  K
+  L
+  M
+  N
+  O
+  J
+  I
+  H
+  G
+  L
+  K
+  F
