@@ -133,9 +133,9 @@ public class Board implements Comparable<Board>{
 //            }
 //        }
         Object [] bar = openList.openList.toArray();
-        System.out.println("heuristic values");
+//        System.out.println("heuristic values");
         for(Object bard: bar){
-            System.out.print(((Board)bard).getHeuristicValue() +" ");
+//            System.out.print(((Board)bard).getHeuristicValue() +" ");
         }
 
         Board tempBoard = openList.openList.pollFirst();
@@ -144,10 +144,10 @@ public class Board implements Comparable<Board>{
         //backtracking
 //        backtracking(tempBoard);
 //        sb.append(alpha);
-        System.out.println("Path is here: ");
-        System.out.println(sb.toString());
-        System.out.println("cnt is here: ");
-        System.out.println(cnt);
+//        System.out.println("Path is here: ");
+//        System.out.println(sb.toString());
+//        System.out.println("cnt is here: ");
+//        System.out.println(cnt);
 
         return alpha;
     }
@@ -188,8 +188,8 @@ public class Board implements Comparable<Board>{
 
                 int score = runHeuristic(copyBoardState);
                 hypotheticalBoard.setHeuristicValue(score);
-                System.out.println("HypotheticalBoard here");
-                hypotheticalBoard.printBoard();
+//                System.out.println("HypotheticalBoard here");
+//                hypotheticalBoard.printBoard();
                 tempMap.put(bs, score);
                 openList.add(hypotheticalBoard);
             }
@@ -197,9 +197,9 @@ public class Board implements Comparable<Board>{
 
 
         Object [] bar = openList.openList.toArray();
-        System.out.println("heuristic values");
+//        System.out.println("heuristic values");
         for(Object bard: bar){
-            System.out.print(((Board)bard).getHeuristicValue() +" ");
+//            System.out.print(((Board)bard).getHeuristicValue() +" ");
         }
 
         Board tempBoard = openList.openList.pollFirst();

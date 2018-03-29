@@ -19,9 +19,9 @@ public class ClosedList {
 
 
     public void add (BoardState [][] bs){
-        System.out.println(closedList.size());
+//        System.out.println(closedList.size());
         if(!this.containsBoard(bs)){
-            System.out.println("adding");
+//            System.out.println("adding");
             closedList.add(copyBS(bs));
         }
     }
@@ -75,23 +75,7 @@ public class ClosedList {
         }
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        BoardState [][]bs = (BoardState[][])obj;
-//        Iterator cli = closedList.iterator();
-//
-//        while(cli.hasNext()){
-//            BoardState [][] clibs = (BoardState [][])cli.next();
-//            for (int i = 0; i<= 2 ;i++){
-//                for (int j = 0; j<= 4 ;j++){
-//                    if(clibs[i][j].getOccupier()!= bs[i][j].getOccupier()){
-//                        return false;
-//                    }
-//                }
-//            }
-//        }
-//        return true;
-//    }
+
 }
 
 
