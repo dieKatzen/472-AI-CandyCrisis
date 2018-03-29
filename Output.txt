@@ -1,2 +1,60 @@
-Solution is: 
-Time elapsed is: -12
+Solution is: INMHGBAF
+Time elapsed is: 30 milliseconds
+Solution is: GLMNIJONMHCBGLMHIJEDI
+Time elapsed is: 94 milliseconds
+Solution is: FKLGBAFGHCBAFKLMHCDINOJEDCHMNOJEDI
+Time elapsed is: 16 milliseconds
+Solution is: DCBGFKLMHCDI
+Time elapsed is: 6 milliseconds
+Solution is: FGBCDIJONI
+Time elapsed is: 4 milliseconds
+Solution is: BCHMLGBCDINOJEDIHCBG
+Time elapsed is: 8 milliseconds
+Solution is: CDIJEDCHGBAFKLGHCBAFGLMH
+Time elapsed is: 17 milliseconds
+Solution is: NMLGBAFKLMHCBAFGLKFABCDEJIDCH
+Time elapsed is: 41 milliseconds
+Solution is: LMNIDCHMNIDCHMNIDEJ
+Time elapsed is: 18 milliseconds
+Solution is: MLGBCHMNIDCBAFKLMNIDEJONMLKFABCHMNIDEJONIDCHINMLGBAF
+Time elapsed is: 40 milliseconds
+Solution is: FKLMNOJIDCBGLMHCBAFKLGHMNOJEDCHMLKFGHIDEJONIJEDI
+Time elapsed is: 139 milliseconds
+Solution is: BCHMLKFABGLMNIDCHGBCHMNIDEJONI
+Time elapsed is: 71 milliseconds
+Solution is: ABCDINMHCBGHIJEDINMLKFABGLMHCBAFKLGBCH
+Time elapsed is: 39 milliseconds
+Solution is: LMNIDCHIDCHMLKFABGLMHGLMNIDEJ
+Time elapsed is: 21 milliseconds
+Solution is: DCBAFKLMHCBGFABCDEJONMHGLMNIHCDINOJ
+Time elapsed is: 44 milliseconds
+Solution is: LGBCDIJONI
+Time elapsed is: 9 milliseconds
+Solution is: INOJINMLGBAF
+Time elapsed is: 5 milliseconds
+Solution is: NMHGLMNOJEDCBGHMLGFABCHGLKF
+Time elapsed is: 14 milliseconds
+Solution is: NIHGFABCHMNIDEJONMLKF
+Time elapsed is: 42 milliseconds
+Solution is: JINMLKFABGLKFGHCBG
+Time elapsed is: 5 milliseconds
+Solution is: DIJEDINMLGHMNIJONMLKFABGFKLG
+Time elapsed is: 11 milliseconds
+Solution is: FABGLMHCDIJEDCHGLMHCDEJONMHIDEJ
+Time elapsed is: 42 milliseconds
+Solution is: BAFGLMHCDINOJEDCBAFGBAFKLMHGBCHIDCHIJEDINMH
+Time elapsed is: 14 milliseconds
+Solution is: CHMNIHGLMNIHGBAFGBAFKLGHMLKFGBCH
+Time elapsed is: 11 milliseconds
+Solution is: NOJEDCHMLGBAFKLGFKLMNIDEJIDCBGHCDEJINMHIDCH
+Time elapsed is: 24 milliseconds
+Solution is: MNIJEDCHGFABCDIHGFKLMNOJEDIHCBGFKLMHCBAFKLMHGLKFABGLKFABGHCDIHMNOJEDINOJIDCHGBCDINOJ
+Time elapsed is: 142 milliseconds
+Solution is: LMNOJEDCBAFGLKFABG
+Time elapsed is: 11 milliseconds
+Solution is: MLGBCHGLMNIDCBGHMNOJIDCBGHMLGBCHGLMNIDCHMLKF
+Time elapsed is: 88 milliseconds
+Solution is: KLMNIDEJONIJONMLGBCHIJEDIJEDCBAFGHMLGBCDIHMNIDEJIDCBG
+Time elapsed is: 107 milliseconds
+Solution is: CBGLKFABCDEJINOJEDIHCDEJONMLGBCH
+Time elapsed is: 42 milliseconds

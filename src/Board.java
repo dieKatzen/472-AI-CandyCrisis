@@ -1,4 +1,4 @@
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.*;
 
 public class Board implements Comparable<Board>{
@@ -13,6 +13,8 @@ public class Board implements Comparable<Board>{
     List <BoardState> legal_moves = new ArrayList<BoardState>();
     ClosedList closedList = new ClosedList();
     int cnt = 0;
+
+    public String path = "";
 
     public StringBuilder getSb() {
         return sb;
@@ -67,6 +69,8 @@ public class Board implements Comparable<Board>{
         this.heuristicValue = oldBoard.getHeuristicValue();
         this.empty_pos_x = oldBoard.empty_pos_x;
         this.empty_pos_y = oldBoard.empty_pos_y;
+        this.sb = new StringBuilder(oldBoard.sb.toString());
+        this.path = oldBoard.path;
         this.cnt = oldBoard.cnt;
     }
 
@@ -148,6 +152,62 @@ public class Board implements Comparable<Board>{
         return alpha;
     }
 
+    public void autoSearchComplete(){
+
+        closedList.add(board);
+
+        Map<BoardState,Integer> tempMap = new HashMap<BoardState, Integer>();
+
+        for (BoardState bs: legal_moves) {
+
+            Board hypotheticalBoard = new Board(board,empty_pos_x,empty_pos_y);
+
+            int swap = bs.alpha_position;
+            int new_pos_x = (swap-65)%5;
+            int new_pos_y = (swap-65-new_pos_x)/5;
+            char new_c = hypotheticalBoard.board[new_pos_y][new_pos_x].getOccupier();
+            hypotheticalBoard.board[hypotheticalBoard.empty_pos_y][hypotheticalBoard.empty_pos_x].setOccupier(new_c);
+            hypotheticalBoard.empty_pos_x = new_pos_x;
+            hypotheticalBoard.empty_pos_y = new_pos_y;
+            hypotheticalBoard.board[hypotheticalBoard.empty_pos_y][hypotheticalBoard.empty_pos_x].setOccupier('e');
+
+            hypotheticalBoard.path += this.path;
+            hypotheticalBoard.path += bs.alpha_position;
+            hypotheticalBoard.cnt = this.cnt+1;
+
+            if(!closedList.containsBoard(hypotheticalBoard.board)) {
+
+                BoardState [][] copyBoardState = new BoardState[3][5];
+
+                for (int i = 0; i<= 2 ;i++) {
+                    for (int j = 0; j<= 4 ;j++) {
+                        copyBoardState[i][j] = new BoardState(hypotheticalBoard.board[i][j].getAlpha_position(),hypotheticalBoard.board[i][j].occupier);
+                    }
+                }
+
+
+                int score = runHeuristic(copyBoardState);
+                hypotheticalBoard.setHeuristicValue(score);
+                System.out.println("HypotheticalBoard here");
+                hypotheticalBoard.printBoard();
+                tempMap.put(bs, score);
+                openList.add(hypotheticalBoard);
+            }
+        }
+
+
+        Object [] bar = openList.openList.toArray();
+        System.out.println("heuristic values");
+        for(Object bard: bar){
+            System.out.print(((Board)bard).getHeuristicValue() +" ");
+        }
+
+        Board tempBoard = openList.openList.pollFirst();
+
+        //backtracking
+        backtracking(tempBoard);
+    }
+
 //    public char autoSearchComplete(){
 //
 //        closedList.add(board);
@@ -211,6 +271,30 @@ public class Board implements Comparable<Board>{
         this.empty_pos_y = oldBoard.empty_pos_y;
         this.empty_pos_x = oldBoard.empty_pos_x;
         this.cnt = oldBoard.cnt;
+        this.path = oldBoard.path;
+        legal_moves.clear();
+    }
+
+    public boolean updateBoard (char c){
+        for (BoardState bs: legal_moves
+                ) {
+            if(bs.alpha_position == c){
+
+                int swap = c;
+                int new_pos_x = (swap-65)%5;
+                int new_pos_y = (swap-65-new_pos_x)/5;
+                char new_c = board[new_pos_y][new_pos_x].getOccupier();
+                board[empty_pos_y][empty_pos_x].setOccupier(new_c);
+                empty_pos_x = new_pos_x;
+                empty_pos_y = new_pos_y;
+                board[empty_pos_y][empty_pos_x].setOccupier('e');
+                legal_moves.clear();
+                return true;
+            }
+        }
+
+        System.out.println("Illegal move");
+        return false;
     }
 
 
@@ -272,27 +356,6 @@ public class Board implements Comparable<Board>{
     }
 
 
-    public boolean updateBoard (char c){
-        for (BoardState bs: legal_moves
-             ) {
-            if(bs.alpha_position == c){
-
-                int swap = c;
-                int new_pos_x = (swap-65)%5;
-                int new_pos_y = (swap-65-new_pos_x)/5;
-                char new_c = board[new_pos_y][new_pos_x].getOccupier();
-                board[empty_pos_y][empty_pos_x].setOccupier(new_c);
-                empty_pos_x = new_pos_x;
-                empty_pos_y = new_pos_y;
-                board[empty_pos_y][empty_pos_x].setOccupier('e');
-                legal_moves.clear();
-                return true;
-            }
-        }
-
-        System.out.println("Illegal move");
-        return false;
-    }
 
     public boolean updateBoardComplete (char c){
         for (BoardState bs: legal_moves
@@ -403,5 +466,44 @@ public class Board implements Comparable<Board>{
         Board testHypotheticalBoard = new Board ("r b w r r b b b b r r b w e r");
         System.out.println(testHypotheticalBoard.runHeuristic(testHypotheticalBoard.board));
 
+    }
+
+    public char nextSolution(int i){
+
+        String csvFile = "solutions.txt";
+        BufferedReader br = null;
+        Scanner scanner = null;
+        String line = "";
+
+
+        try {
+
+            scanner = new Scanner(System.in);
+            br = new BufferedReader(new FileReader(csvFile));
+
+            while ((line = br.readLine()) != null) {
+
+                return line.charAt(i);
+
+            }
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (scanner != null) {
+                    scanner.close();
+                }
+
+            } catch (Exception e) {
+
+            }
+        }
+
+        return ']';
     }
 }

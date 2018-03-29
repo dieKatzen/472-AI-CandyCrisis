@@ -1,0 +1,60 @@
+ Solution is: INMHGBAF
+ Time elapsed is: -34
+ Solution is: GLMNIJONMHCBGLMHIJEDI
+ Time elapsed is: -122
+ Solution is: FKLGBAFGHCBAFKLMHCDINOJEDCHMNOJEDI
+ Time elapsed is: -25
+ Solution is: DCBGFKLMHCDI
+ Time elapsed is: -11
+ Solution is: FGBCDIJONI
+ Time elapsed is: -5
+ Solution is: BCHMLGBCDINOJEDIHCBG
+ Time elapsed is: -8
+ Solution is: CDIJEDCHGBAFKLGHCBAFGLMH
+ Time elapsed is: -19
+ Solution is: NMLGBAFKLMHCBAFGLKFABCDEJIDCH
+ Time elapsed is: -70
+ Solution is: LMNIDCHMNIDCHMNIDEJ
+ Time elapsed is: -21
+ Solution is: MLGBCHMNIDCBAFKLMNIDEJONMLKFABCHMNIDEJONIDCHINMLGBAF
+ Time elapsed is: -44
+ Solution is: FKLMNOJIDCBGLMHCBAFKLGHMNOJEDCHMLKFGHIDEJONIJEDI
+ Time elapsed is: -152
+ Solution is: BCHMLKFABGLMNIDCHGBCHMNIDEJONI
+ Time elapsed is: -88
+ Solution is: ABCDINMHCBGHIJEDINMLKFABGLMHCBAFKLGBCH
+ Time elapsed is: -46
+ Solution is: LMNIDCHIDCHMLKFABGLMHGLMNIDEJ
+ Time elapsed is: -23
+ Solution is: DCBAFKLMHCBGFABCDEJONMHGLMNIHCDINOJ
+ Time elapsed is: -50
+ Solution is: LGBCDIJONI
+ Time elapsed is: -6
+ Solution is: INOJINMLGBAF
+ Time elapsed is: -5
+ Solution is: NMHGLMNOJEDCBGHMLGFABCHGLKF
+ Time elapsed is: -15
+ Solution is: NIHGFABCHMNIDEJONMLKF
+ Time elapsed is: -49
+ Solution is: JINMLKFABGLKFGHCBG
+ Time elapsed is: -5
+ Solution is: DIJEDINMLGHMNIJONMLKFABGFKLG
+ Time elapsed is: -13
+ Solution is: FABGLMHCDIJEDCHGLMHCDEJONMHIDEJ
+ Time elapsed is: -55
+ Solution is: BAFGLMHCDINOJEDCBAFGBAFKLMHGBCHIDCHIJEDINMH
+ Time elapsed is: -13
+ Solution is: CHMNIHGLMNIHGBAFGBAFKLGHMLKFGBCH
+ Time elapsed is: -13
+ Solution is: NOJEDCHMLGBAFKLGFKLMNIDEJIDCBGHCDEJINMHIDCH
+ Time elapsed is: -28
+ Solution is: MNIJEDCHGFABCDIHGFKLMNOJEDIHCBGFKLMHCBAFKLMHGLKFABGLKFABGHCDIHMNOJEDINOJIDCHGBCDINOJ
+ Time elapsed is: -114
+ Solution is: LMNOJEDCBAFGLKFABG
+ Time elapsed is: -12
+ Solution is: MLGBCHGLMNIDCBGHMNOJIDCBGHMLGBCHGLMNIDCHMLKF
+ Time elapsed is: -67
+ Solution is: KLMNIDEJONIJONMLGBCHIJEDIJEDCBAFGHMLGBCDIHMNIDEJIDCBG
+ Time elapsed is: -72
+ Solution is: CBGLKFABCDEJINOJEDIHCDEJONMLGBCH
+ Time elapsed is: -14
